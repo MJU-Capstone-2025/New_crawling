@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[9]:
-
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
@@ -20,8 +14,8 @@ driver = webdriver.Chrome(options=options)
 
 all_data = []
 
-for page in range(12):  
-    url = f'https://www.usda.gov/search?query=coffee&commit=Search&page={page}'
+for page in range(34):  
+    url = f'https://www.usda.gov/search?query=robusta&commit=Search&page={page}'
     print(f"[페이지 {page}] 크롤링 중: {url}")
     driver.get(url)
     time.sleep(8)  
@@ -65,13 +59,6 @@ df = pd.DataFrame(all_data)
 
 # 날짜 기준 내림차순 정렬 (최신순)
 df = df.sort_values(by='date', ascending=False)
-df.to_csv("usda_coffee_articles.csv", index=False, encoding='utf-8-sig')
+df.to_csv("usda_robusta_articles.csv", index=False, encoding='utf-8-sig')
 
-print(f"수집 완료: 총 {len(df)}개 기사 → 'usda_coffee_articles.csv' 저장됨")
-
-
-# In[ ]:
-
-
-
-
+print(f"수집 완료: 총 {len(df)}개 기사 → 'usda_robusta_articles.csv' 저장됨")
